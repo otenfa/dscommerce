@@ -1,7 +1,9 @@
 package com.sumauma.dscommerce.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.sumauma.dscommerce.enumerations.OrderStatus;
@@ -39,7 +41,7 @@ public class Order {
 	
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
-		
+			
 	public Order() {
 	}
 	
@@ -86,6 +88,10 @@ public class Order {
 
 	public Set<OrderItem> getItems() {
 		return items;
+	}
+	
+	public List<Product> getProducts() {
+		return items.stream().map(x -> x.getProduct()).toList();
 	}
 	
 	
