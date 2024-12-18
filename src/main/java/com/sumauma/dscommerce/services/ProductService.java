@@ -43,9 +43,27 @@ public class ProductService {
 	
 	//este método busca toda uma lista de objetos porém de froma paginada
 	//se nada for informado, será paginado de 20 em 20 objetos
+	@Transactional(readOnly = true)
 	public Page<ProductDTO> findAll(Pageable pageable) {
 		Page<Product> listProducts = repository.findAll(pageable);
 		return listProducts.map(x -> new ProductDTO(x));
 									
 	}
+	
+	@Transactional
+	public ProductDTO insert(ProductDTO dto) {
+		
+		Product entity = new Product();
+		entity.setName(dto.getName());
+		entity.setDescription(dto.getDescription());
+		entity.setPrice(dto.getPrice());
+		entity.setImgUri(dto.getImgUri());
+		
+		entity = repository.save(entity);
+		
+		return new ProductDTO(entity);
+		
+	}
+		
+	
 }
