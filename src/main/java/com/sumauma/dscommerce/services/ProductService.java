@@ -1,6 +1,8 @@
 package com.sumauma.dscommerce.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +32,20 @@ public class ProductService {
 		//simplificado
 		Product product = repository.findById(id).get();
 		return new ProductDTO(product);
+							
+	}
+	/* este método retorna uma lista completa de todos os objetos
+	@Transactional(readOnly = true)	
+	public List<ProductDTO> findAll() {
+		List<Product> listProducts = repository.findAll();
+		return listProducts.stream().map(x -> new ProductDTO(x)).toList();
+	*/
 	
-						
+	//este método busca toda uma lista de objetos porém de froma paginada
+	//se nada for informado, será paginado de 20 em 20 objetos
+	public Page<ProductDTO> findAll(Pageable pageable) {
+		Page<Product> listProducts = repository.findAll(pageable);
+		return listProducts.map(x -> new ProductDTO(x));
+									
 	}
 }
