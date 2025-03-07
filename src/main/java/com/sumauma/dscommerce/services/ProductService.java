@@ -51,8 +51,8 @@ public class ProductService {
 	//este método busca toda uma lista de objetos porém de froma paginada
 	//se nada for informado, será paginado de 20 em 20 objetos
 	@Transactional(readOnly = true)
-	public Page<ProductDTO> findAll(Pageable pageable) {
-		Page<Product> listProducts = repository.findAll(pageable);
+	public Page<ProductDTO> findAll(String name, Pageable pageable) {
+		Page<Product> listProducts = repository.searchByName(name, pageable);
 		return listProducts.map(x -> new ProductDTO(x));
 									
 	}
