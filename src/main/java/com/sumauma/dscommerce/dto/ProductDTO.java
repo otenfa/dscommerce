@@ -2,8 +2,6 @@ package com.sumauma.dscommerce.dto;
 
 import com.sumauma.dscommerce.entities.Product;
 
-import jakarta.persistence.Column;
-
 public class ProductDTO {
 
 	private Long id;
@@ -52,7 +50,26 @@ public class ProductDTO {
 	public String getImgUri() {
 		return imgUri;
 	}
-	
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public void setImgUri(String imgUri) {
+		this.imgUri = imgUri;
+	}
 	
 
 }

@@ -1,5 +1,7 @@
 package com.sumauma.dscommerce.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,12 @@ public class ProductService {
 	@Autowired
 	private ProductRepository repository;
 	
+	
+	@Transactional(readOnly = true)
+	public List<ProductDTO> findAll() {
+		return repository.findAll().stream().map(x -> new ProductDTO(x)).toList();
+	}
+	
 	@Transactional(readOnly = true)	
 	public ProductDTO findById(Long id) {
 		/*
@@ -27,10 +35,19 @@ public class ProductService {
 		//Optional<Product> result = repository.findById(id);
 		//return new ProductDTO(result.get());
 		
-		//simplificado
+		//constructor do objeto DTO recebeno uma entidade produto como parametro
+		//Product product = repository.findById(id).get();
+		//return new ProductDTO(product);
+							
+		//usando os métodos setter para popular a projeção do produto no DTO
 		Product product = repository.findById(id).get();
-		return new ProductDTO(product);
-	
-						
+		ProductDTO dto = new ProductDTO();
+		dto.setId(product.getId());
+		dto.setName(product.getName());
+		dto.setDescription(product.getDescription());
+		dto.setPrice(product.getPrice());
+		dto.setImgUri(product.getImgUri());
+		return dto;
+		
 	}
 }
