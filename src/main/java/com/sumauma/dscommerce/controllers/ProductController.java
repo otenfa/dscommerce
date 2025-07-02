@@ -27,43 +27,39 @@ public class ProductController {
 
 	@Autowired
 	private ProductService service;
-	
+
 	@GetMapping
 	public ResponseEntity<List<ProductDTO>> findAll() {
 		List<ProductDTO> list = service.findAll();
 		return ResponseEntity.ok(list);
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
-		
-		//ProductDTO dto = service.findById(id);
-		//return dto;
-		
-		//simplificado
+
+		// ProductDTO dto = service.findById(id);
+		// return dto;
+
+		// simplificado
 		ProductDTO dto = service.findById(id);
 		return ResponseEntity.ok(dto);
-				
+
 	}
 
-/*
- 	@GetMapping
-	public List<ProductDTO> findAll() {
-		return service.findAll();
-	}
-	
-	
-	@GetMapping
-	public ResponseEntity<Page<ProductDTO>> findAll(
-			@RequestParam(name = "name", defaultValue = "") String name, 
-			Pageable pageable) {
-		Page<ProductDTO> dto = service.findAll(name, pageable);
-		return ResponseEntity.ok(dto);
-				
-	}
-*/
-	
+	/*
+	 * @GetMapping public List<ProductDTO> findAll() { return service.findAll(); }
+	 * 
+	 * 
+	 * @GetMapping public ResponseEntity<Page<ProductDTO>> findAll(
+	 * 
+	 * @RequestParam(name = "name", defaultValue = "") String name, Pageable
+	 * pageable) { Page<ProductDTO> dto = service.findAll(name, pageable); return
+	 * ResponseEntity.ok(dto);
+	 * 
+	 * }
+	 */
+
+	// @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')")
 	@PostMapping
 	public ResponseEntity<ProductDTO> insert(@Valid @RequestBody ProductDTO dto) {
 		dto = service.insert(dto);
@@ -71,18 +67,20 @@ public class ProductController {
 		return ResponseEntity.created(uri).body(dto);
 	}
 
+	// @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')")
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<ProductDTO> update(@PathVariable Long id, @Valid @RequestBody ProductDTO dto) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok(dto);
-				
+
 	}
 
+	// @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> update(@PathVariable Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
-				
+
 	}
 
 }

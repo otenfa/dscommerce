@@ -8,7 +8,7 @@ public class BodyError {
 	private Integer status;
 	private String msgError;
 	private String pathUri;
-	
+
 	public BodyError(Instant timeStamp, Integer status, String msgError, String pathUri) {
 		super();
 		this.timeStamp = timeStamp;
@@ -32,6 +32,5 @@ public class BodyError {
 	public String getPathUri() {
 		return pathUri;
 	}
-	
-		
+
 }

@@ -14,14 +14,14 @@ public class OrderItem {
 	private OrderItemPk id = new OrderItemPk();
 	private Integer quantity;
 	private Double price;
-	
-	public OrderItem() {		
+
+	public OrderItem() {
 	}
-	
+
 	public OrderItem(Order order, Product product, Integer quantity, Double price) {
 		super();
 		this.id.setOrder(order);
-		this.id.setProduct(product);		
+		this.id.setProduct(product);
 		this.quantity = quantity;
 		this.price = price;
 	}
@@ -29,19 +29,19 @@ public class OrderItem {
 	public Order getOrder() {
 		return id.getOrder();
 	}
-	
+
 	public void setOrder(Order order) {
 		this.id.setOrder(order);
 	}
-	
+
 	public Product getProduct() {
 		return id.getProduct();
 	}
-	
+
 	public void setProduct(Product product) {
 		this.id.setProduct(product);
 	}
-	
+
 	public Integer getQuantity() {
 		return quantity;
 	}
@@ -75,5 +75,4 @@ public class OrderItem {
 		return Objects.equals(id, other.id);
 	}
 
-			
 }

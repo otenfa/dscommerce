@@ -1,10 +1,10 @@
 package com.sumauma.dscommerce.services.customExceptions;
 
-public class DataBaseException extends RuntimeException{
+public class DataBaseException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public DataBaseException (String msg) {
+	public DataBaseException(String msg) {
 		super(msg);
 	}
 }

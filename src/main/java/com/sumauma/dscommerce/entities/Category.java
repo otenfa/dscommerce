@@ -19,11 +19,11 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	
+
 	@ManyToMany(mappedBy = "categories")
 	private Set<Product> products = new HashSet<>();
-	
-	public Category() {		
+
+	public Category() {
 	}
 
 	public Category(Long id, String name) {
@@ -68,5 +68,5 @@ public class Category {
 		Category other = (Category) obj;
 		return Objects.equals(id, other.id);
 	}
-			
+
 }

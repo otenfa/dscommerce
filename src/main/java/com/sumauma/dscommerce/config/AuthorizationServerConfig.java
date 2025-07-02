@@ -48,9 +48,9 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import com.sumauma.dscommerce.config.customgrant.CustomPasswordAuthenticationConverter;
 import com.sumauma.dscommerce.config.customgrant.CustomPasswordAuthenticationProvider;
-import com.sumauma.dscommerce.customgrant.copy.CustomPasswordAuthenticationConverter;
-import com.sumauma.dscommerce.customgrant.copy.CustomUserAuthorities;
+import com.sumauma.dscommerce.config.customgrant.CustomUserAuthorities;
 
 @Configuration
 public class AuthorizationServerConfig {
@@ -71,7 +71,8 @@ public class AuthorizationServerConfig {
 	@Order(2)
 	SecurityFilterChain asSecurityFilterChain(HttpSecurity http) throws Exception {
 
-		http.securityMatcher("oauth2/**", "/.well-known/**").with(OAuth2AuthorizationServerConfigurer.authorizationServer(), Customizer.withDefaults());
+		http.securityMatcher("oauth2/**", "/.well-known/**")
+				.with(OAuth2AuthorizationServerConfigurer.authorizationServer(), Customizer.withDefaults());
 
 		// @formatter:off
 		http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)

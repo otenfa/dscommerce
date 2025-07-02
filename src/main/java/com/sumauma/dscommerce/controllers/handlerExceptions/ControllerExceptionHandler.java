@@ -20,25 +20,27 @@ import jakarta.servlet.http.HttpServletRequest;
 public class ControllerExceptionHandler {
 
 	@ExceptionHandler(RessourceNotFoundException.class)
-	public ResponseEntity<BodyError> custonName(RessourceNotFoundException e, HttpServletRequest request){
+	public ResponseEntity<BodyError> custonName(RessourceNotFoundException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		BodyError err = new BodyError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
 
 	@ExceptionHandler(DataBaseException.class)
-	public ResponseEntity<BodyError> database(DataBaseException e, HttpServletRequest request){
+	public ResponseEntity<BodyError> database(DataBaseException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		BodyError err = new BodyError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
-	
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<BodyError> methodArgumentNotValidation(MethodArgumentNotValidException e, HttpServletRequest request){
+	public ResponseEntity<BodyError> methodArgumentNotValidation(MethodArgumentNotValidException e,
+			HttpServletRequest request) {
 		HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
-		ValidationError err = new ValidationError(Instant.now(), status.value(), "Dados inválidos", request.getRequestURI());
-		for(FieldError f : e.getBindingResult().getFieldErrors()) {
-			err.addListErrors(f.getField(),f.getDefaultMessage());
+		ValidationError err = new ValidationError(Instant.now(), status.value(), "Dados inválidos",
+				request.getRequestURI());
+		for (FieldError f : e.getBindingResult().getFieldErrors()) {
+			err.addListErrors(f.getField(), f.getDefaultMessage());
 		}
 		return ResponseEntity.status(status).body(err);
 	}

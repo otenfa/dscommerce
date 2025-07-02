@@ -12,12 +12,12 @@ public class OrderItemPk {
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
-	
-	public OrderItemPk() {		
+
+	public OrderItemPk() {
 	}
 
 	public Order getOrder() {
@@ -52,5 +52,5 @@ public class OrderItemPk {
 		OrderItemPk other = (OrderItemPk) obj;
 		return Objects.equals(order, other.order) && Objects.equals(product, other.product);
 	}
-		
+
 }

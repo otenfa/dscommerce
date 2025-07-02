@@ -9,20 +9,20 @@ import jakarta.validation.constraints.Size;
 public class ProductDTO {
 
 	private Long id;
-	
+
 	@NotBlank(message = "não pode ser nulo")
-	@Size(min=3, max=80, message="deve conter entre 3 e 80 caracteres")
+	@Size(min = 3, max = 80, message = "deve conter entre 3 e 80 caracteres")
 	private String name;
 
 	@NotBlank(message = "não pode ser nulo")
-	@Size(min=10, message="deve conter no mínimo 10 caracteres")
+	@Size(min = 10, message = "deve conter no mínimo 10 caracteres")
 	private String description;
-	
-	@Positive(message="deve ser um valor positivo")
+
+	@Positive(message = "deve ser um valor positivo")
 	private Double price;
 	private String imgUri;
-	
-	public ProductDTO() {		
+
+	public ProductDTO() {
 	}
 
 	public ProductDTO(Long id, String name, String description, Double price, String imgUri) {
@@ -33,7 +33,7 @@ public class ProductDTO {
 		this.price = price;
 		this.imgUri = imgUri;
 	}
-	
+
 	public ProductDTO(Product entity) {
 		super();
 		id = entity.getId();
