@@ -1,9 +1,9 @@
 package com.sumauma.dscommerce.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,11 +22,26 @@ public class ProductService {
 	@Autowired
 	private ProductRepository repository;
 
+	/*retorna uma lista com todos os produtos*/
+//	@Transactional(readOnly = true)
+//	public List<ProductDTO> findAll() {
+//		return repository.findAll().stream().map(x -> new ProductDTO(x)).toList();
+//	}
+
+//	/*retorna uma lista com todos os produtos - paginados*/
+//	@Transactional(readOnly = true)
+//	public Page<ProductDTO> findAll(Pageable pageable) {
+//		Page<Product> result = repository.findAll(pageable); 
+//		return result.map(x -> new ProductDTO(x));
+//	}
+	
 	@Transactional(readOnly = true)
-	public List<ProductDTO> findAll() {
-		return repository.findAll().stream().map(x -> new ProductDTO(x)).toList();
+	public Page<ProductDTO> findAll(Pageable pageable) {
+		return repository.findAll(pageable).map(x -> new ProductDTO(x));
 	}
 
+	
+	
 	@Transactional(readOnly = true)
 	public ProductDTO findById(Long id) {
 		/*
@@ -56,25 +71,7 @@ public class ProductService {
 		return new ProductDTO(product);
 
 	}
-	/*
-	 * este método retorna uma lista completa de todos os objetos
-	 * 
-	 * @Transactional(readOnly = true) public List<ProductDTO> findAll() {
-	 * List<Product> listProducts = repository.findAll(); return
-	 * listProducts.stream().map(x -> new ProductDTO(x)).toList();
-	 */
-
-	// este método busca toda uma lista de objetos porém de froma paginada
-	// se nada for informado, será paginado de 20 em 20 objetos
-
-	/*
-	 * @Transactional(readOnly = true) public Page<ProductDTO> findAll(String name,
-	 * Pageable pageable) { Page<Product> listProducts =
-	 * repository.searchByName(name, pageable); return listProducts.map(x -> new
-	 * ProductDTO(x));
-	 * 
-	 * }
-	 */
+		
 	@Transactional
 	public ProductDTO insert(ProductDTO dto) {
 		Product entity = new Product();

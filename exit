@@ -1,0 +1,21 @@
+[33m219fe0d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m correções e ajustes código - não estava conseguindo realiar o login - testado e ok
+[33m9bea69a[m collection json
+[33m86394e0[m json postman
+[33md0eaa0a[m ajustes e correçõs pós inclusão OAuth2
+[33m9ee7ec2[m insert package security OAuth2 - não testado
+[33m4a92674[m consulta de produtos por nome
+[33m8bfe956[m bean validation
+[33mfd26c2c[m tratamento de exceções
+[33m777918e[m delete product
+[33madd5785[m put product
+[33mf855e86[m post new product
+[33m47ceb34[m cnsulta de produtos ordenada
+[33mf604271[m product by id
+[33md9415bb[m teste da API e teste com Repository
+[33mbb023f1[m inclusão dos métodos equals e hashcodes pelas classes
+[33m888ea7a[m seed do BD
+[33m2185977[m inclusão dos gets de products e orders a partir da classe Order e Product respectivamente
+[33me043082[m mapeamento da classe OrderItem, criação da OrderItemPK
+[33m71701c1[m criação entidades Product e Category e seus mapeamentos ORM
+[33m4e9e2cc[m criação entidade Payment e seus relacionamentos com a entidade Order; testes ok pós criações
+[33mc8deb41[m criação do projeto, teste de criação do BD, criação das entidades de domínio User e Order; mapeamento dos relacionamentos
